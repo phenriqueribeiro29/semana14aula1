@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA com Service Worker</title>
+
+    <style>
+        /* Estilo básico só para não ficar feio */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            padding: 50px;
+            color: #333;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+        h1 { color: #0070f3; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Minha PWA!</h1>
+        <p>Se você está vendo esta mensagem, a página carregou com sucesso.</p>
+        <p>Aperte <strong>F12</strong> e vá na aba <strong>Console</strong> ou <strong>Application</strong> para ver o Service Worker funcionando.</p>
+    </div>
+    
+    <script>
+  // Verifica se o navegador suporta Service Workers
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('Service Worker registrado com sucesso: ', registration.scope);
+        })
+        .catch(error => {
+          console.error('Falha ao registrar o Service Worker: ', error);
+        });
+    });
+  }
+</script>
+
+</body>
+</html>
